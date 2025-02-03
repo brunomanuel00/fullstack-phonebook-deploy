@@ -26,6 +26,10 @@ app.use(express.static('dist'))
 app.use(express.json())
 app.use(middleware.morganMiddleware)
 
+app.get('/', (req, res) => {
+    res.send('API funcionando correctamente');
+});
+
 app.use('/api', personsRouter)
 
 app.use(middleware.unknownEndpoint)
