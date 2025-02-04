@@ -5,7 +5,6 @@ const personsRouter = require('./controllers/person')
 const middleware = require('./utils/middleware')
 const config = require('./utils/config')
 const mongoose = require('mongoose')
-const path = require('path')
 
 mongoose.set('strictQuery', false)
 
@@ -23,14 +22,7 @@ mongoose.connect(url)
     })
 
 app.use(cors())
-// app.use(express.static('dist'))
-// const path = require('path')
-
-app.use(express.static(path.join(__dirname, './dist')))
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './dist', 'index.html'))
-})
+app.use(express.static('dist'))
 
 app.use(express.json())
 app.use(middleware.morganMiddleware)
